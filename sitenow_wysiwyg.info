@@ -6,6 +6,7 @@ php = 5.2.4
 version = 7.x-1.0-dev
 project = sitenow_wysiwyg
 dependencies[] = features
+dependencies[] = media
 dependencies[] = sitenow_media
 dependencies[] = wysiwyg
 dependencies[] = wysiwyg_filter

@@ -38,6 +38,9 @@ function sitenow_wysiwyg_wysiwyg_default_profiles() {
         'imce' => array(
           'imce' => 1,
         ),
+        'drupal' => array(
+          'media' => 1,
+        ),
       ),
       'toolbar_loc' => 'top',
       'toolbar_align' => 'left',
@@ -89,6 +92,9 @@ function sitenow_wysiwyg_wysiwyg_default_profiles() {
         ),
         'imce' => array(
           'imce' => 1,
+        ),
+        'drupal' => array(
+          'media' => 1,
         ),
       ),
       'toolbar_loc' => 'top',

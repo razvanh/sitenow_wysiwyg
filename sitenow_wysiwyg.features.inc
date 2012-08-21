@@ -1,15 +1,4 @@
 <?php
-/**
- * @file
- * sitenow_wysiwyg.features.inc
- */
 
-/**
- * Implements hook_ctools_plugin_api().
- */
-function sitenow_wysiwyg_ctools_plugin_api() {
-  list($module, $api) = func_get_args();
-  if ($module == "strongarm" && $api == "strongarm") {
-    return array("version" => "1");
-  }
-}
+// This file is deprecated and can be removed.
+// Please remove include_once('sitenow_wysiwyg.features.inc') in sitenow_wysiwyg.module as well.
