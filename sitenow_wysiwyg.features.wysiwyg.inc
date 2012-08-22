@@ -44,7 +44,6 @@ function sitenow_wysiwyg_wysiwyg_default_profiles() {
           'RemoveFormat' => 1,
           'Format' => 1,
           'Table' => 1,
-          'Scayt' => 1,
         ),
         'imce' => array(
           'imce' => 1,

@@ -3,3 +3,14 @@
  * @file
  * Drupal needs this blank file.
  */
+
+/**
+ * Implements hook_wysiwyg_editor_settings_alter
+ */
+function sitenow_wysiwyg_wysiwyg_editor_settings_alter(&$settings, $context) {
+  //Check if the editor is ckeditor
+  if ($context['profile']->editor == 'ckeditor') {
+        //Enable the spell checker by default
+    $settings['scayt_autoStartup'] = true;
+  }
+}
