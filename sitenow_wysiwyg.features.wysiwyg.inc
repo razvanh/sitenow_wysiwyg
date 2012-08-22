@@ -33,6 +33,7 @@ function sitenow_wysiwyg_wysiwyg_default_profiles() {
           'Anchor' => 1,
           'PasteFromWord' => 1,
           'RemoveFormat' => 1,
+          'Format' => 1,
           'Table' => 1,
         ),
         'imce' => array(
