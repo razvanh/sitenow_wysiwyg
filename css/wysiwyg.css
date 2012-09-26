@@ -1,0 +1,9 @@
+body.cke_show_borders,
+body.mceContentBody {
+  font-size: 1em; /* reset font size */
+  
+  /* just in case the theme sets a background on the body tag */
+  background: none #FFF;
+  
+  margin: 10px; /* add a bit of spacing so we aren't right to the edge */
+}

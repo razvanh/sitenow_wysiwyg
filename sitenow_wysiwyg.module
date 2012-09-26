@@ -12,5 +12,9 @@ function sitenow_wysiwyg_wysiwyg_editor_settings_alter(&$settings, $context) {
   if ($context['profile']->editor == 'ckeditor') {
         //Enable the spell checker by default
     $settings['scayt_autoStartup'] = true;
+    
+    // Include custom css files
+    $module_location = $GLOBALS['base_path'] . drupal_get_path('module', 'sitenow_wysiwyg');
+    $settings['contentsCss'][] = $module_location . '/css/wysiwyg.css';
   }
 }
