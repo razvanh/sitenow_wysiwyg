@@ -13,8 +13,53 @@ function sitenow_wysiwyg_wysiwyg_editor_settings_alter(&$settings, $context) {
         //Enable the spell checker by default
     $settings['scayt_autoStartup'] = true;
     
-    // Include custom css files
+    // Include custom wysiwyg helper css files
     $module_location = $GLOBALS['base_path'] . drupal_get_path('module', 'sitenow_wysiwyg');
     $settings['contentsCss'][] = $module_location . '/css/wysiwyg.css';
+    
+    //If sitenow_standardtheme is the default theme
+    if (variable_get('theme_default') === 'sitenow_standardtheme') {
+      // Include global styles in the WYSIWYG
+      $settings['contentsCss'][] = '/sites/all/themes/sitenow_standardtheme/css/global.styles.css';
+    }
+    
+    // If custom override WYISWYG theme css files have been submitted via the ui, add them to config
+    if(variable_get('sitenow_wysiwyg_theme_css') != '') {
+      $wysiwyg_css_location = variable_get('sitenow_wysiwyg_theme_css');
+      $override_css = explode(',', strtr($wysiwyg_css_location, array('%b' => base_path(), '%t' => drupal_get_path('theme', variable_get('theme_default', NULL)))));
+      foreach ($override_css as $css) {
+        $settings['contentsCss'][] = $css;
+      }
+    }
   }
+}
+
+function sitenow_wysiwyg_menu () {
+  $items = array();
+  $items['admin/config/content/wysiwyg-override'] = array (
+    'title' => 'Wysiwyg profiles overrides',
+    'description' => 'Using SiteNow WYSIWYG on a custom site? You probably need to configure this.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('sitenow_custom_wysiwyg_override_form'),
+    'access arguments' => array('administer filters'),
+  );
+  return $items;
+}
+
+/**
+* Page callback: Sitenow WYSIWYG settings
+*
+* @see sitenow_wysiwyg_menu()
+*/
+function sitenow_custom_wysiwyg_override_form ($form, &$form_state) {
+  $form['sitenow_wysiwyg_theme_css'] = array(
+    '#type' => 'textfield',
+    '#title' => t('CSS path'),
+    '#size' => 40,
+    '#maxlength' => 255,
+    '#default_value' => variable_get('sitenow_wysiwyg_theme_css'),
+    '#description' => t('Since SiteNow WYISWYG encapsulates all WYSIWYG settings into features, we need a way to tell WYSIWYG to use our theme style without overriding the feature.')  . '<br />' . t('Enter path to a CSS file or a list of CSS files separated by a comma.') . '<br />' . t('Available tokens: <code>%b</code> (base path, eg: <code>/</code>), <code>%t</code> (path to theme, eg: <code>themes/garland</code>)') . '<br />' . t('Example:') . ' css/editor.css,/themes/garland/style.css,%b%t/style.css,http://example.com/external.css',
+  );
+
+  return system_settings_form($form);
 }
