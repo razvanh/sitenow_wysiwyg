@@ -13,6 +13,10 @@ function sitenow_wysiwyg_wysiwyg_editor_settings_alter(&$settings, $context) {
         //Enable the spell checker by default
     $settings['scayt_autoStartup'] = true;
     
+
+    // Add Outline blocks
+    $settings['startupOutlineBlocks'] = true;
+
     // Include custom wysiwyg helper css files
     $module_location = $GLOBALS['base_path'] . drupal_get_path('module', 'sitenow_wysiwyg');
     $settings['contentsCss'][] = $module_location . '/css/wysiwyg.css';
