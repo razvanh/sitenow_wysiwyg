@@ -45,9 +45,6 @@ function sitenow_wysiwyg_wysiwyg_default_profiles() {
           'Format' => 1,
           'Table' => 1,
         ),
-        'imce' => array(
-          'imce' => 1,
-        ),
         'drupal' => array(
           'media' => 1,
         ),
@@ -105,9 +102,6 @@ function sitenow_wysiwyg_wysiwyg_default_profiles() {
           'Format' => 1,
           'Table' => 1,
           'Scayt' => 1,
-        ),
-        'imce' => array(
-          'imce' => 1,
         ),
         'drupal' => array(
           'media' => 1,
