@@ -12,7 +12,6 @@ function sitenow_wysiwyg_wysiwyg_editor_settings_alter(&$settings, $context) {
   if ($context['profile']->editor == 'ckeditor') {
         //Enable the spell checker by default
     $settings['scayt_autoStartup'] = true;
-    
 
     // Add Outline blocks
     $settings['startupOutlineBlocks'] = true;
@@ -20,13 +19,13 @@ function sitenow_wysiwyg_wysiwyg_editor_settings_alter(&$settings, $context) {
     // Include custom wysiwyg helper css files
     $module_location = $GLOBALS['base_path'] . drupal_get_path('module', 'sitenow_wysiwyg');
     $settings['contentsCss'][] = $module_location . '/css/wysiwyg.css';
-    
+
     //If sitenow_standardtheme is the default theme
     if (variable_get('theme_default') === 'sitenow_standardtheme') {
       // Include global styles in the WYSIWYG
       $settings['contentsCss'][] = '/sites/all/themes/sitenow_standardtheme/css/global.styles.css';
     }
-    
+
     // If custom override WYISWYG theme css files have been submitted via the ui, add them to config
     if(variable_get('sitenow_wysiwyg_theme_css') != '') {
       $wysiwyg_css_location = variable_get('sitenow_wysiwyg_theme_css');
