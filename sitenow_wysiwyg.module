@@ -66,6 +66,26 @@ function sitenow_custom_wysiwyg_override_form($form, &$form_state) {
 
   return system_settings_form($form);
 }
+
+/*
+ * Implements hook_form_FORM_ID_alter
+ */
+function sitenow_wysiwyg_form_filter_admin_format_form_alter(&$form, &$form_state, $form_id) {
+  if($form['format']['#default_value'] === 'filtered_html' || $form['format']['#default_value'] === 'full_html') {
+    // Disable name field
+    $form['name']['#disabled'] = TRUE;
+    // Disable all filter options
+    $form['filters']['#disabled'] = TRUE;
+    // Enable pathologic local path settings since those are site-specific
+    $form['filters']['settings']['pathologic']['local_paths']['#disabled'] = FALSE;
+  }
+  if($form['format']['#default_value'] === 'filtered_html') {
+    // Enable CSS class rules since those are currently configurable
+    $form['filters']['settings']['wysiwyg']['rule_valid_classes']['#disabled'] = FALSE;
+  }
+
+}
+
 /*
  * Implements hook_filter_default_formats_alter
  */
