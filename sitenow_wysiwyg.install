@@ -10,5 +10,5 @@
 * Turn on CKEditor Link
 */
 function sitenow_wysiwyg_update_7100(&$sandbox) {
-  module_enable('ckeditor_link', $enable_dependencies = FALSE);
+  module_enable(array('ckeditor_link'), $enable_dependencies = FALSE);
 }
