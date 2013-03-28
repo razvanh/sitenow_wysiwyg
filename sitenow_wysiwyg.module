@@ -54,7 +54,7 @@ function sitenow_wysiwyg_menu () {
 *
 * @see sitenow_wysiwyg_menu()
 */
-function sitenow_custom_wysiwyg_override_form ($form, &$form_state) {
+function sitenow_custom_wysiwyg_override_form($form, &$form_state) {
   $form['sitenow_wysiwyg_theme_css'] = array(
     '#type' => 'textfield',
     '#title' => t('CSS path'),
