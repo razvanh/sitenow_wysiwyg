@@ -12,3 +12,10 @@
 function sitenow_wysiwyg_update_7100(&$sandbox) {
   module_enable(array('ckeditor_link'), $enable_dependencies = FALSE);
 }
+
+/**
+* Turn on Pathologic
+*/
+function sitenow_wysiwyg_update_7101(&$sandbox) {
+  module_enable(array('pathologic'), $enable_dependencies = FALSE);
+}

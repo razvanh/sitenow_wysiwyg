@@ -182,6 +182,14 @@ h1, h2, h3, h4, h5, h6',
         'status' => '1',
         'settings' => array(),
       ),
+      'pathologic' => array(
+        'weight' => '50',
+        'status' => '1',
+        'settings' => array(
+          'local_paths' => '',
+          'protocol_style' => 'full',
+        ),
+      ),
     ),
   );
 
@@ -219,6 +227,14 @@ h1, h2, h3, h4, h5, h6',
         'weight' => '10',
         'status' => '1',
         'settings' => array(),
+      ),
+      'pathologic' => array(
+        'weight' => '50',
+        'status' => '1',
+        'settings' => array(
+          'local_paths' => '',
+          'protocol_style' => 'full',
+        ),
       ),
     ),
   );

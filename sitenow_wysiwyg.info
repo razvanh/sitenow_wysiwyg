@@ -9,6 +9,7 @@ dependencies[] = ckeditor_link
 dependencies[] = features
 dependencies[] = filter
 dependencies[] = media
+dependencies[] = pathologic
 dependencies[] = wysiwyg
 dependencies[] = wysiwyg_filter
 features[features_api][] = api:1
