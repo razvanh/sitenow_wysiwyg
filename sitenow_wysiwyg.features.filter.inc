@@ -18,6 +18,11 @@ function sitenow_wysiwyg_filter_default_formats() {
     'status' => '1',
     'weight' => '0',
     'filters' => array(
+      'ckeditor_link_filter' => array(
+        'weight' => '0',
+        'status' => '1',
+        'settings' => array(),
+      ),
       'filter_url' => array(
         'weight' => '0',
         'status' => '1',
@@ -188,6 +193,11 @@ h1, h2, h3, h4, h5, h6',
     'status' => '1',
     'weight' => '1',
     'filters' => array(
+      'ckeditor_link_filter' => array(
+        'weight' => '0',
+        'status' => '1',
+        'settings' => array(),
+      ),
       'filter_url' => array(
         'weight' => '0',
         'status' => '1',

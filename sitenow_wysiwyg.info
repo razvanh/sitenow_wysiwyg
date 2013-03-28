@@ -5,6 +5,7 @@ package = SiteNow
 php = 5.2.4
 version = 7.x-1.0-dev3
 project = sitenow_wysiwyg
+dependencies[] = ckeditor_link
 dependencies[] = features
 dependencies[] = filter
 dependencies[] = media

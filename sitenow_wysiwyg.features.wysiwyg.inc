@@ -45,6 +45,9 @@ function sitenow_wysiwyg_wysiwyg_default_profiles() {
           'Format' => 1,
           'Table' => 1,
         ),
+        'drupal_path' => array(
+          'Link' => 1,
+        ),
         'drupal' => array(
           'media' => 1,
         ),
