@@ -87,6 +87,20 @@ function sitenow_wysiwyg_form_filter_admin_format_form_alter(&$form, &$form_stat
 }
 
 /*
+ * Implements hook_form_FORM_ID_alter
+ */
+function sitenow_wysiwyg_form_wysiwyg_profile_form_alter(&$form, &$form_state, $form_id) {
+  if($form['format']['#value'] === 'filtered_html' || $form['format']['#value'] === 'full_html') {
+    // Disable the ability to edit any wysiwyg profile controlled by SiteNow WYSIWYG
+    $form['basic']['#disabled'] = TRUE;
+    $form['buttons']['#disabled'] = TRUE;
+    $form['appearance']['#disabled'] = TRUE;
+    $form['output']['#disabled'] = TRUE;
+    $form['css']['#disabled'] = TRUE;
+  }
+}
+
+/*
  * Implements hook_filter_default_formats_alter
  */
 function sitenow_wysiwyg_filter_default_formats_alter(&$formats) {
