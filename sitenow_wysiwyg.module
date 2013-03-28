@@ -82,6 +82,13 @@ function sitenow_wysiwyg_filter_default_formats_alter(&$formats) {
   // Set the local paths default in the feature to the value that's stored in the database
   $formats['filtered_html']['filters']['pathologic']['settings']['local_paths'] = $filtered_pathologic_local_paths;
 
+  // WYSIWYG Filter valid classes
+  // Get the rule_valid_classes value from the available filters
+  $filtered_wysiwyg = get_object_vars($filtered_html['wysiwyg']);
+  $filtered_wysiwyg_valid_classes = $filtered_wysiwyg['settings']['rule_valid_classes'];
+  // Set the local paths default in the feature to the value that's stored in the database
+  $formats['filtered_html']['filters']['wysiwyg']['settings']['rule_valid_classes'] = $filtered_wysiwyg_valid_classes;
+
   // Full HTML settings
   //
   // Get available filters for full_html text format
