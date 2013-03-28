@@ -19,3 +19,10 @@ function sitenow_wysiwyg_update_7100(&$sandbox) {
 function sitenow_wysiwyg_update_7101(&$sandbox) {
   module_enable(array('pathologic'), $enable_dependencies = FALSE);
 }
+
+/**
+* Turn on CkEditor Link for Files
+*/
+function sitenow_wysiwyg_update_7102(&$sandbox) {
+  module_enable(array('ckeditor_link_file, strongarm'), $enable_dependencies = TRUE);
+}

@@ -1,8 +1,10 @@
 <?php
 /**
  * @file
- * Drupal needs this blank file.
+ * Code for the SiteNow WYSIWYG feature.
  */
+
+include_once 'sitenow_wysiwyg.features.inc';
 
 /**
  * Implements hook_wysiwyg_editor_settings_alter
