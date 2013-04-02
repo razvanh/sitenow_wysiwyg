@@ -110,14 +110,15 @@ function sitenow_wysiwyg_filter_default_formats_alter(&$formats) {
   //
   // Get available filters for filtered_html text format
   $filtered_html = filter_list_format('filtered_html');
-
-  // Pathologic settings
-  // Get the local paths value from the available filters
-  $filtered_pathologic = get_object_vars($filtered_html['pathologic']);
-  $filtered_pathologic_local_paths = $filtered_pathologic['settings']['local_paths'];
-  // Set the local paths default in the feature to the value that's stored in the database
-  $formats['filtered_html']['filters']['pathologic']['settings']['local_paths'] = $filtered_pathologic_local_paths;
-
+    // check to see if object exists
+    if ($filtered_html['pathologic']) {
+      // Pathologic settings
+      // Get the local paths value from the available filters
+      $filtered_pathologic = get_object_vars($filtered_html['pathologic']);
+      $filtered_pathologic_local_paths = $filtered_pathologic['settings']['local_paths'];
+      // Set the local paths default in the feature to the value that's stored in the database
+      $formats['filtered_html']['filters']['pathologic']['settings']['local_paths'] = $filtered_pathologic_local_paths;
+    }
   // WYSIWYG Filter valid classes
   // Get the rule_valid_classes value from the available filters
   $filtered_wysiwyg = get_object_vars($filtered_html['wysiwyg']);
@@ -129,12 +130,13 @@ function sitenow_wysiwyg_filter_default_formats_alter(&$formats) {
   //
   // Get available filters for full_html text format
   $full_html = filter_list_format('full_html');
-
-  // Pathologic settings
-  // Get the local paths value from the available filters
-  $full_pathologic = get_object_vars($full_html['pathologic']);
-  $full_pathologic_local_paths = $full_pathologic['settings']['local_paths'];
-  // Set the local paths default in the feature to the value that's stored in the database
-  $formats['full_html']['filters']['pathologic']['settings']['local_paths'] = $full_pathologic_local_paths;
-
+    // check to see if object exists
+    if ($full_html['pathologic']) {
+      // Pathologic settings
+      // Get the local paths value from the available filters
+      $full_pathologic = get_object_vars($full_html['pathologic']);
+      $full_pathologic_local_paths = $full_pathologic['settings']['local_paths'];
+      // Set the local paths default in the feature to the value that's stored in the database
+      $formats['full_html']['filters']['pathologic']['settings']['local_paths'] = $full_pathologic_local_paths;
+    }
 }
