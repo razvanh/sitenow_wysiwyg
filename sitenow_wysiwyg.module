@@ -7,29 +7,30 @@
 include_once 'sitenow_wysiwyg.features.inc';
 
 /**
- * Implements hook_wysiwyg_editor_settings_alter
+ * Implements hook_wysiwyg_editor_settings_alter().
  */
 function sitenow_wysiwyg_wysiwyg_editor_settings_alter(&$settings, $context) {
-  //Check if the editor is ckeditor
+  // Check if the editor is CKEditor.
   if ($context['profile']->editor == 'ckeditor') {
-        //Enable the spell checker by default
     $settings['scayt_autoStartup'] = true;
+    // Enable the spell checker by default.
 
-    // Add Outline blocks
     $settings['startupOutlineBlocks'] = true;
+    // Add Outline blocks.
 
-    // Include custom wysiwyg helper css files
+    // Include custom wysiwyg helper css files.
     $module_location = $GLOBALS['base_path'] . drupal_get_path('module', 'sitenow_wysiwyg');
     $settings['contentsCss'][] = $module_location . '/css/wysiwyg.css';
 
-    //If sitenow_standardtheme is the default theme
+    // If sitenow_standardtheme is the default theme.
     if (variable_get('theme_default') === 'sitenow_standardtheme') {
-      // Include global styles in the WYSIWYG
+      // Include global styles in the WYSIWYG.
       $settings['contentsCss'][] = '/sites/all/themes/sitenow_standardtheme/css/global.styles.css';
     }
 
-    // If custom override WYISWYG theme css files have been submitted via the ui, add them to config
-    if(variable_get('sitenow_wysiwyg_theme_css') != '') {
+    // If custom override WYISWYG theme css files have been submitted via the
+    // ui, add them to config.
+    if (variable_get('sitenow_wysiwyg_theme_css') != '') {
       $wysiwyg_css_location = variable_get('sitenow_wysiwyg_theme_css');
       $override_css = explode(',', strtr($wysiwyg_css_location, array('%b' => base_path(), '%t' => drupal_get_path('theme', variable_get('theme_default', NULL)))));
       foreach ($override_css as $css) {
@@ -39,7 +40,10 @@ function sitenow_wysiwyg_wysiwyg_editor_settings_alter(&$settings, $context) {
   }
 }
 
-function sitenow_wysiwyg_menu () {
+/**
+ * Implements hook_menu().
+ */
+function sitenow_wysiwyg_menu() {
   $items = array();
   $items['admin/config/content/wysiwyg-override'] = array (
     'title' => 'Wysiwyg profiles overrides',
@@ -52,10 +56,10 @@ function sitenow_wysiwyg_menu () {
 }
 
 /**
-* Page callback: Sitenow WYSIWYG settings
-*
-* @see sitenow_wysiwyg_menu()
-*/
+ * Page callback: Sitenow WYSIWYG settings.
+ *
+ * @see sitenow_wysiwyg_menu()
+ */
 function sitenow_custom_wysiwyg_override_form($form, &$form_state) {
   $form['sitenow_wysiwyg_theme_css'] = array(
     '#type' => 'textfield',
@@ -69,31 +73,32 @@ function sitenow_custom_wysiwyg_override_form($form, &$form_state) {
   return system_settings_form($form);
 }
 
-/*
- * Implements hook_form_FORM_ID_alter
+/**
+ * Implements hook_form_FORM_ID_alter().
  */
 function sitenow_wysiwyg_form_filter_admin_format_form_alter(&$form, &$form_state, $form_id) {
   if($form['format']['#default_value'] === 'filtered_html' || $form['format']['#default_value'] === 'full_html') {
-    // Disable name field
+    // Disable name field.
     $form['name']['#disabled'] = TRUE;
-    // Disable all filter options
+    // Disable all filter options.
     $form['filters']['#disabled'] = TRUE;
-    // Enable pathologic local path settings since those are site-specific
+    // Enable pathologic local path settings since those are site-specific.
     $form['filters']['settings']['pathologic']['local_paths']['#disabled'] = FALSE;
   }
   if($form['format']['#default_value'] === 'filtered_html') {
-    // Enable CSS class rules since those are currently configurable
+    // Enable CSS class rules since those are currently configurable.
     $form['filters']['settings']['wysiwyg']['rule_valid_classes']['#disabled'] = FALSE;
   }
 
 }
 
-/*
- * Implements hook_form_FORM_ID_alter
+/**
+ * Implements hook_form_FORM_ID_alter().
  */
 function sitenow_wysiwyg_form_wysiwyg_profile_form_alter(&$form, &$form_state, $form_id) {
   if($form['format']['#value'] === 'filtered_html' || $form['format']['#value'] === 'full_html') {
-    // Disable the ability to edit any wysiwyg profile controlled by SiteNow WYSIWYG
+    // Disable the ability to edit any wysiwyg profile controlled by SiteNow
+    // WYSIWYG.
     $form['basic']['#disabled'] = TRUE;
     $form['buttons']['#disabled'] = TRUE;
     $form['appearance']['#disabled'] = TRUE;
@@ -102,41 +107,42 @@ function sitenow_wysiwyg_form_wysiwyg_profile_form_alter(&$form, &$form_state, $
   }
 }
 
-/*
- * Implements hook_filter_default_formats_alter
+/**
+ * Implements hook_filter_default_formats_alter().
  */
 function sitenow_wysiwyg_filter_default_formats_alter(&$formats) {
-  // Filtered HTML settings
-  //
-  // Get available filters for filtered_html text format
+  // Filtered HTML settings.
+  // Get available filters for filtered_html text format.
   $filtered_html = filter_list_format('filtered_html');
-    // check to see if object exists
     if ($filtered_html['pathologic']) {
-      // Pathologic settings
-      // Get the local paths value from the available filters
       $filtered_pathologic = get_object_vars($filtered_html['pathologic']);
       $filtered_pathologic_local_paths = $filtered_pathologic['settings']['local_paths'];
-      // Set the local paths default in the feature to the value that's stored in the database
       $formats['filtered_html']['filters']['pathologic']['settings']['local_paths'] = $filtered_pathologic_local_paths;
     }
-  // WYSIWYG Filter valid classes
-  // Get the rule_valid_classes value from the available filters
+  // Check to see if object exists.
+    // Pathologic settings.
+    // Get the local paths value from the available filters.
+    // Set the local paths default in the feature to the value that's stored
+    // in the database.
+  // WYSIWYG Filter valid classes.
+  // Get the rule_valid_classes value from the available filters.
   $filtered_wysiwyg = get_object_vars($filtered_html['wysiwyg']);
   $filtered_wysiwyg_valid_classes = $filtered_wysiwyg['settings']['rule_valid_classes'];
-  // Set the local paths default in the feature to the value that's stored in the database
+  // Set the local paths default in the feature to the value that's stored in
+  // the database.
   $formats['filtered_html']['filters']['wysiwyg']['settings']['rule_valid_classes'] = $filtered_wysiwyg_valid_classes;
 
-  // Full HTML settings
-  //
-  // Get available filters for full_html text format
+  // Full HTML settings.
+  // Get available filters for full_html text format.
   $full_html = filter_list_format('full_html');
-    // check to see if object exists
     if ($full_html['pathologic']) {
-      // Pathologic settings
-      // Get the local paths value from the available filters
       $full_pathologic = get_object_vars($full_html['pathologic']);
       $full_pathologic_local_paths = $full_pathologic['settings']['local_paths'];
-      // Set the local paths default in the feature to the value that's stored in the database
       $formats['full_html']['filters']['pathologic']['settings']['local_paths'] = $full_pathologic_local_paths;
     }
+  // Check to see if object exists.
+    // Pathologic settings.
+    // Get the local paths value from the available filters.
+    // Set the local paths default in the feature to the value that's stored
+    // in the database.
 }

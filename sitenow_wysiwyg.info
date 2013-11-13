@@ -1,5 +1,5 @@
 name = SiteNow WYSIWYG
-description = Default text formats and WYSIWYG configuration for SiteNow
+description = Default text formats and WYSIWYG configuration for SiteNow.
 core = 7.x
 package = SiteNow
 php = 5.2.4
