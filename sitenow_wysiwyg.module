@@ -45,7 +45,6 @@ function sitenow_wysiwyg_wysiwyg_editor_settings_alter(&$settings, $context) {
  */
 function sitenow_wysiwyg_menu() {
   $items = array();
-  $items['admin/config/content/wysiwyg-override'] = array (
     'title' => 'Wysiwyg profiles overrides',
     'description' => 'Using SiteNow WYSIWYG on a custom site? You probably need to configure this.',
     'page callback' => 'drupal_get_form',
