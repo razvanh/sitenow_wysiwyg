@@ -12,11 +12,11 @@ include_once 'sitenow_wysiwyg.features.inc';
 function sitenow_wysiwyg_wysiwyg_editor_settings_alter(&$settings, $context) {
   // Check if the editor is CKEditor.
   if ($context['profile']->editor == 'ckeditor') {
-    $settings['scayt_autoStartup'] = true;
     // Enable the spell checker by default.
+    $settings['scayt_autoStartup'] = TRUE;
 
-    $settings['startupOutlineBlocks'] = true;
     // Add Outline blocks.
+    $settings['startupOutlineBlocks'] = TRUE;
 
     // Include custom wysiwyg helper css files.
     $module_location = $GLOBALS['base_path'] . drupal_get_path('module', 'sitenow_wysiwyg');
