@@ -1,9 +1,9 @@
 name = SiteNow WYSIWYG
-description = Default text formats and WYSIWYG configuration for SiteNow
+description = Default text formats and WYSIWYG configuration for SiteNow.
 core = 7.x
 package = SiteNow
 php = 5.2.4
-version = 7.x-1.0-dev3
+version = 7.x-1.0-alpha1
 project = sitenow_wysiwyg
 dependencies[] = ckeditor_link
 dependencies[] = ctools

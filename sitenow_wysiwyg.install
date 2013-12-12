@@ -1,28 +1,26 @@
 <?php
-
 /**
  * @file
- *
- * Install and uninstall tasks for SiteNow WYSIWYG
+ * Install and uninstall tasks for SiteNow WYSIWYG.
  */
 
 /**
-* Turn on CKEditor Link
-*/
+ * Turn on CKEditor Link.
+ */
 function sitenow_wysiwyg_update_7100(&$sandbox) {
   module_enable(array('ckeditor_link'), $enable_dependencies = FALSE);
 }
 
 /**
-* Turn on Pathologic
-*/
+ * Turn on Pathologic.
+ */
 function sitenow_wysiwyg_update_7101(&$sandbox) {
   module_enable(array('pathologic'), $enable_dependencies = FALSE);
 }
 
 /**
-* Turn on CkEditor Link for Files
-*/
+ * Turn on CkEditor Link for Files.
+ */
 function sitenow_wysiwyg_update_7102(&$sandbox) {
   module_enable(array('ckeditor_link_file, strongarm'), $enable_dependencies = TRUE);
 }
