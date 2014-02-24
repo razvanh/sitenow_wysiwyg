@@ -37,6 +37,10 @@ function sitenow_wysiwyg_wysiwyg_editor_settings_alter(&$settings, $context) {
         $settings['contentsCss'][] = $css;
       }
     }
+
+    // create a custom config file in order to disable alt and title text fields
+    // in ckeditor dialog.
+    $settings['customConfig'] = $module_location . '/js/customconfig.js';
   }
 }
 
