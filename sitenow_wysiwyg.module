@@ -119,7 +119,7 @@ function sitenow_wysiwyg_filter_default_formats_alter(&$formats) {
   // Get available filters for filtered_html text format.
   $filtered_html = filter_list_format('filtered_html');
   // Check to see if object exists.
-  if ($filtered_html['pathologic']) {
+  if (isset($filtered_html['pathologic'])) {
     // Pathologic settings.
     // Get the local paths value from the available filters.
     $filtered_pathologic = get_object_vars($filtered_html['pathologic']);
@@ -130,7 +130,7 @@ function sitenow_wysiwyg_filter_default_formats_alter(&$formats) {
   }
   // WYSIWYG Filter valid classes.
   // Get the rule_valid_classes value from the available filters.
-  if ($filtered_html['wysiwyg']) {
+  if (isset($filtered_html['wysiwyg'])) {
     $filtered_wysiwyg = get_object_vars($filtered_html['wysiwyg']);
     $filtered_wysiwyg_valid_classes = $filtered_wysiwyg['settings']['rule_valid_classes'];
     // Set the local paths default in the feature to the value that's stored in
@@ -142,7 +142,7 @@ function sitenow_wysiwyg_filter_default_formats_alter(&$formats) {
   // Get available filters for full_html text format.
   $full_html = filter_list_format('full_html');
   // Check to see if object exists.
-  if ($full_html['pathologic']) {
+  if (isset($full_html['pathologic'])) {
     // Pathologic settings.
     // Get the local paths value from the available filters.
     $full_pathologic = get_object_vars($full_html['pathologic']);
