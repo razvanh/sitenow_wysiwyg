@@ -37,7 +37,7 @@ function sitenow_wysiwyg_filter_default_formats() {
           'valid_elements' => '@[class|style|title],
 a[href|target|title|name|rel],
 img[style|src|width|height|alt|title],
-em, strong, strike, del, sub, sup, i, b, q, acronym, samp, kbd,
+em, strong, strike, s, del, sub, sup, i, b, q, acronym, samp, kbd,
 ul, ol[start], li, dl, dt, dd,
 p[align<center?justify?left?right], br, hr,
 div[align<center?justify?left?right], span,
