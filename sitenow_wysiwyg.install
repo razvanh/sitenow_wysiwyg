@@ -7,7 +7,7 @@
 /**
  * Implements hook_uninstall().
  */
-function sitenow_media_uninstall() {
+function sitenow_wysiwyg_uninstall() {
   // Delete sitenow_wysiwyg_theme_css variable.
   variable_del('sitenow_wysiwyg_theme_css');
   // Delete sitenow_wysiwyg_disable_forms variable.
