@@ -9,6 +9,7 @@ dependencies[] = ctools
 dependencies[] = features
 dependencies[] = filter
 dependencies[] = media
+dependencies[] = media_wysiwyg
 dependencies[] = pathologic
 dependencies[] = strongarm
 dependencies[] = wysiwyg

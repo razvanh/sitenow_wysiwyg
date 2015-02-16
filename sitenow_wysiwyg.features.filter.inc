@@ -157,7 +157,10 @@ h1, h2, h3, h4, h5, h6',
             'outline-color' => 0,
             'zoom' => 0,
           ),
-          'rule_valid_classes' => array(),
+          'rule_valid_classes' => array(
+            0 => 'plain-button',
+            2 => 'small',
+          ),
           'rule_valid_ids' => array(),
           'rule_style_urls' => array(),
         ),
@@ -181,7 +184,11 @@ h1, h2, h3, h4, h5, h6',
         'weight' => 50,
         'status' => 1,
         'settings' => array(
-          'local_paths' => '',
+          'local_paths' => 'http://dev.sitenow.uiowa.edu/dining
+http://test.sitenow.uiowa.edu/dining
+http://dining.uiowa.edu
+/dining/
+/',
           'protocol_style' => 'full',
         ),
       ),
