@@ -73,6 +73,12 @@ function sitenow_custom_wysiwyg_override_form($form, &$form_state) {
     '#default_value' => variable_get('sitenow_wysiwyg_theme_css'),
     '#description' => t('Since SiteNow WYISWYG encapsulates all WYSIWYG settings into features, we need a way to tell WYSIWYG to use our theme style without overriding the feature.')  . '<br />' . t('Enter path to a CSS file or a list of CSS files separated by a comma.') . '<br />' . t('Available tokens: <code>%b</code> (base path, eg: <code>/</code>), <code>%t</code> (path to theme, eg: <code>themes/garland</code>)') . '<br />' . t('Example:') . ' css/editor.css,/themes/garland/style.css,%b%t/style.css,http://example.com/external.css',
   );
+  $form['sitenow_wysiwyg_disable_forms'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Disable text format and WYSIWYG forms'),
+    '#default_value' => variable_get('sitenow_wysiwyg_disable_forms', TRUE),
+    '#description' => t('Disable these forms since they are controlled by SiteNow WYSIWYG. Unchecking this allows you to override the default text editor environment.'),
+  );
 
   return system_settings_form($form);
 }
@@ -81,33 +87,36 @@ function sitenow_custom_wysiwyg_override_form($form, &$form_state) {
  * Implements hook_form_FORM_ID_alter().
  */
 function sitenow_wysiwyg_form_filter_admin_format_form_alter(&$form, &$form_state, $form_id) {
-  if ($form['format']['#default_value'] === 'filtered_html' || $form['format']['#default_value'] === 'full_html') {
-    // Disable name field.
-    $form['name']['#disabled'] = TRUE;
-    // Disable all filter options.
-    $form['filters']['#disabled'] = TRUE;
-    // Enable pathologic local path settings since those are site-specific.
-    $form['filters']['settings']['pathologic']['local_paths']['#disabled'] = FALSE;
+  if (variable_get('sitenow_wysiwyg_disable_forms', TRUE)) {
+    if ($form['format']['#default_value'] === 'filtered_html' || $form['format']['#default_value'] === 'full_html') {
+      // Disable name field.
+      $form['name']['#disabled'] = TRUE;
+      // Disable all filter options.
+      $form['filters']['#disabled'] = TRUE;
+      // Enable pathologic local path settings since those are site-specific.
+      $form['filters']['settings']['pathologic']['local_paths']['#disabled'] = FALSE;
+    }
+    if ($form['format']['#default_value'] === 'filtered_html') {
+      // Enable CSS class rules since those are currently configurable.
+      $form['filters']['settings']['wysiwyg']['rule_valid_classes']['#disabled'] = FALSE;
+    }
   }
-  if ($form['format']['#default_value'] === 'filtered_html') {
-    // Enable CSS class rules since those are currently configurable.
-    $form['filters']['settings']['wysiwyg']['rule_valid_classes']['#disabled'] = FALSE;
-  }
-
 }
 
 /**
  * Implements hook_form_FORM_ID_alter().
  */
 function sitenow_wysiwyg_form_wysiwyg_profile_form_alter(&$form, &$form_state, $form_id) {
-  if ($form['format']['#value'] === 'filtered_html' || $form['format']['#value'] === 'full_html') {
-    // Disable the ability to edit any wysiwyg profile controlled by SiteNow
-    // WYSIWYG.
-    $form['basic']['#disabled'] = TRUE;
-    $form['buttons']['#disabled'] = TRUE;
-    $form['appearance']['#disabled'] = TRUE;
-    $form['output']['#disabled'] = TRUE;
-    $form['css']['#disabled'] = TRUE;
+  if (variable_get('sitenow_wysiwyg_disable_forms', TRUE)) {
+    if ($form['format']['#value'] === 'filtered_html' || $form['format']['#value'] === 'full_html') {
+      // Disable the ability to edit any wysiwyg profile controlled by SiteNow
+      // WYSIWYG.
+      $form['basic']['#disabled'] = TRUE;
+      $form['buttons']['#disabled'] = TRUE;
+      $form['appearance']['#disabled'] = TRUE;
+      $form['output']['#disabled'] = TRUE;
+      $form['css']['#disabled'] = TRUE;
+    }
   }
 }
 

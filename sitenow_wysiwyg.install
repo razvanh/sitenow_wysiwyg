@@ -5,6 +5,14 @@
  */
 
 /**
+ * Implements hook_uninstall().
+ */
+function sitenow_media_uninstall() {
+  // Delete sitenow_wysiwyg_disable_forms variable.
+  variable_del('sitenow_wysiwyg_disable_forms');
+}
+
+/**
  * Turn on CKEditor Link.
  */
 function sitenow_wysiwyg_update_7100(&$sandbox) {
