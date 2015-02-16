@@ -17,28 +17,28 @@ function sitenow_media_uninstall() {
 /**
  * Turn on CKEditor Link.
  */
-function sitenow_wysiwyg_update_7100(&$sandbox) {
+function sitenow_wysiwyg_update_7100() {
   module_enable(array('ckeditor_link'), $enable_dependencies = FALSE);
 }
 
 /**
  * Turn on Pathologic.
  */
-function sitenow_wysiwyg_update_7101(&$sandbox) {
+function sitenow_wysiwyg_update_7101() {
   module_enable(array('pathologic'), $enable_dependencies = FALSE);
 }
 
 /**
  * Turn on CkEditor Link for Files.
  */
-function sitenow_wysiwyg_update_7102(&$sandbox) {
+function sitenow_wysiwyg_update_7102() {
   module_enable(array('ckeditor_link_file, strongarm'), $enable_dependencies = TRUE);
 }
 
 /**
 * Revert all components of SiteNow WYSIWYG.
 */
-function sitenow_wysiwyg_update_7103(&$sandbox) {
+function sitenow_wysiwyg_update_7103() {
   $feature = features_get_features('sitenow_wysiwyg');
   $components = array_keys($feature->info['features']);
   features_revert(array('sitenow_wysiwyg' => $components));
