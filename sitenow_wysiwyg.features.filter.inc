@@ -184,11 +184,7 @@ h1, h2, h3, h4, h5, h6',
         'weight' => 50,
         'status' => 1,
         'settings' => array(
-          'local_paths' => 'http://dev.sitenow.uiowa.edu/dining
-http://test.sitenow.uiowa.edu/dining
-http://dining.uiowa.edu
-/dining/
-/',
+          'local_paths' => '',
           'protocol_style' => 'full',
         ),
       ),
