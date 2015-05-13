@@ -33,5 +33,12 @@ CKEDITOR.on( 'dialogDefinition', function( ev )
       };
 
     }
-
+    // Check if the definition is from the dialog we're
+    // interested on (the "Table" dialog).
+    if ( dialogName == 'table' ) {
+      // Get a reference to the "Table Info" tab.
+      var infoTab = dialogDefinition.getContents( 'info' );
+      txtWidth = infoTab.get( 'txtWidth' );
+      txtWidth['default'] = '100%';
+    }
   });
