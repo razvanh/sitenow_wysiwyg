@@ -16,5 +16,3 @@ dependencies[] = wysiwyg
 dependencies[] = wysiwyg_filter
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
-features[wysiwyg][] = filtered_html
-features[wysiwyg][] = full_html

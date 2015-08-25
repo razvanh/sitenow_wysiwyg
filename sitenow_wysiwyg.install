@@ -7,7 +7,8 @@
 /**
  * Implements hook_install().
  *
- * Perform actions to set up the filtered and full html text formats.
+ * Perform actions to set up the filtered and full html text formats and WYSIWYG
+ * filters.
  *
  * @see system_install()
  */
@@ -244,6 +245,142 @@ figure, figcaption',
   );
   $full_html_format = (object) $full_html_format;
   filter_format_save($full_html_format);
+
+  $filtered_html_profile = array(
+    'format' => 'filtered_html',
+    'editor' => 'ckeditor',
+    'settings' => array(
+      'default' => 1,
+      'user_choose' => 0,
+      'show_toggle' => 1,
+      'add_to_summaries' => 0,
+      'theme' => 'advanced',
+      'language' => 'en',
+      'buttons' => array(
+        'default' => array(
+          'Bold' => 1,
+          'Italic' => 1,
+          'Strike' => 1,
+          'JustifyLeft' => 1,
+          'JustifyCenter' => 1,
+          'JustifyRight' => 1,
+          'BulletedList' => 1,
+          'NumberedList' => 1,
+          'Outdent' => 1,
+          'Indent' => 1,
+          'Undo' => 1,
+          'Redo' => 1,
+          'Link' => 1,
+          'Unlink' => 1,
+          'Anchor' => 1,
+          'Superscript' => 1,
+          'Subscript' => 1,
+          'Source' => 1,
+          'HorizontalRule' => 1,
+          'PasteFromWord' => 1,
+          'RemoveFormat' => 1,
+          'SpecialChar' => 1,
+          'Format' => 1,
+          'Table' => 1,
+        ),
+        'drupal_path' => array(
+          'Link' => 1,
+        ),
+        'drupal' => array(
+          'media' => 1,
+        ),
+      ),
+      'toolbarLocation' => 'top',
+      'resize_enabled' => 1,
+      'default_toolbar_grouping' => 0,
+      'simple_source_formatting' => 1,
+      'acf_mode' => 0,
+      'acf_allowed_content' => '',
+      'css_setting' => 'self',
+      'css_path' => '',
+      'stylesSet' => '',
+      'block_formats' => 'p,h2,h3,h4,h5',
+      'advanced__active_tab' => 'edit-output',
+      'forcePasteAsPlainText' => 1,
+    ),
+    'rdf_mapping' => array(),
+  );
+
+  db_insert('wysiwyg')
+    ->fields(array(
+      'format' => $filtered_html_profile['format'],
+      'editor' => $filtered_html_profile['editor'],
+      'settings' => serialize($filtered_html_profile['settings']),
+      ))
+    ->execute();
+
+  $full_html_profile = array(
+    'format' => 'full_html',
+    'editor' => 'ckeditor',
+    'settings' => array(
+      'default' => 1,
+      'user_choose' => 0,
+      'show_toggle' => 1,
+      'add_to_summaries' => 0,
+      'theme' => 'advanced',
+      'language' => 'en',
+      'buttons' => array(
+        'default' => array(
+          'Bold' => 1,
+          'Italic' => 1,
+          'Strike' => 1,
+          'JustifyLeft' => 1,
+          'JustifyCenter' => 1,
+          'JustifyRight' => 1,
+          'BulletedList' => 1,
+          'NumberedList' => 1,
+          'Outdent' => 1,
+          'Indent' => 1,
+          'Undo' => 1,
+          'Redo' => 1,
+          'Link' => 1,
+          'Unlink' => 1,
+          'Anchor' => 1,
+          'Superscript' => 1,
+          'Subscript' => 1,
+          'Source' => 1,
+          'HorizontalRule' => 1,
+          'PasteFromWord' => 1,
+          'RemoveFormat' => 1,
+          'SpecialChar' => 1,
+          'Format' => 1,
+          'Table' => 1,
+        ),
+        'drupal_path' => array(
+          'Link' => 1,
+        ),
+        'drupal' => array(
+          'media' => 1,
+        ),
+      ),
+      'toolbarLocation' => 'top',
+      'resize_enabled' => 1,
+      'default_toolbar_grouping' => 0,
+      'simple_source_formatting' => 1,
+      'acf_mode' => 0,
+      'acf_allowed_content' => '',
+      'css_setting' => 'self',
+      'css_path' => '',
+      'stylesSet' => '',
+      'block_formats' => 'p,address,pre,h2,h3,h4,h5,h6,div',
+      'advanced__active_tab' => 'edit-output',
+      'forcePasteAsPlainText' => 1,
+    ),
+    'rdf_mapping' => array(),
+  );
+
+  db_insert('wysiwyg')
+    ->fields(array(
+      'format' => $full_html_profile['format'],
+      'editor' => $full_html_profile['editor'],
+      'settings' => serialize($full_html_profile['settings']),
+      ))
+    ->execute();
 }
 
 /**
