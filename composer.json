@@ -1,0 +1,8 @@
+{
+    "name": "its-uofiowa/sitenow_wysiwyg",
+    "description": "Default text formats and WYSIWYG configuration for SiteNow.",
+    "type": "drupal-module",
+    "require": {
+      "composer/installers": "*"
+    }
+}
